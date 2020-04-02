@@ -68,7 +68,7 @@ void testStringUniqueness()
     cout << "Type in the text to check:\n";
     getline(cin, stringUnderTest);
 
-    if(utils::isUnique(stringUnderTest))
+    if(isUnique(stringUnderTest))
         cout << "true\n";
     else
         cout << "false\n";
@@ -84,10 +84,19 @@ void testPermutation()
     cout << "Enter the second word:\n";
     getline(cin, secondWord);
 
-    if(utils::isPermutation(firstWord, secondWord))
+    if(isPermutation(firstWord, secondWord))
         cout << "Those words are a permutation of each other\n";
     else
         cout << "Those words are not a permutation of each other\n";
+}
+
+void testToURL()
+{
+    string target;
+    cout << "Type in the string to transform:\n";
+    getline(cin, target);
+    string urlForm = toURL(target);
+    cout << "The URL form is:\n" << urlForm << endl;
 }
 
 int main() {
@@ -101,6 +110,7 @@ int main() {
         << "\t 2 for hash table builder\n"
         << "\t 3 for string uniqueness\n"
         << "\t 4 for permutation check\n"
+        << "\t 5 for transforming a string to a URL\n"
         << "\t 0 to exit\n";
         cin >> keyboardInput;
         cin.ignore();
@@ -109,18 +119,26 @@ int main() {
         {
             int choice = keyboardInput[0] - '0';
 
-            if (0 == choice)
-                break;
-            else if (1 == choice)
-                testStringBuilder();
-            else if (2 == choice)
-                testHashTable();
-            else if (3 == choice)
-                testStringUniqueness();
-            else if (4 == choice)
-                testPermutation();
-            else
-                cout << "Sorry I didn't understand, could you retype please?" << endl;
+            switch (choice)
+            {
+                case 1:
+                    testStringBuilder();
+                    break;
+                case 2:
+                    testHashTable();
+                    break;
+                case 3:
+                    testStringUniqueness();
+                    break;
+                case 4:
+                    testPermutation();
+                    break;
+                case 5:
+                    testToURL();
+                    break;
+                default:
+                    cout << "Sorry I didn't understand, could you retype please?" << endl;
+            }
 
             cout << "Do you still want to play? y/n" << endl;
             cin >> answer;

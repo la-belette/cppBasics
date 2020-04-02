@@ -5,7 +5,7 @@
 #include "utils.h"
 #include "StringBuilder.h"
 
-bool utils::isUnique(std::string stringUnderTest)
+bool isUnique(std::string stringUnderTest)
 {
     //int i = 0;
     //for(char c : stringUnderTest)
@@ -24,7 +24,7 @@ bool utils::isUnique(std::string stringUnderTest)
     return true;
 }
 
-bool utils::isPermutation(string first, string second)
+bool isPermutation(string first, string second)
 {
     StringBuilder sb1;
     StringBuilder sb2;
@@ -46,4 +46,36 @@ bool utils::isPermutation(string first, string second)
     }
 
     return(sb1.isEmpty() && sb2.isEmpty());
+}
+
+string toURL(string targetString)
+{
+    StringBuilder url;
+    bool firstNonSpaceFound = false;
+    bool spaceFound = false;
+    for (char c: targetString)
+    {
+        if (c == ' ')
+        {
+            if (firstNonSpaceFound)
+            {
+                spaceFound = true;
+            }
+        }
+        else
+        {
+            if (!firstNonSpaceFound)
+            {
+                firstNonSpaceFound = true;
+            }
+            if(spaceFound)
+            {
+                url.append("%20");
+                spaceFound = false;
+            }
+            url.append(c);
+        }
+    }
+    string result = url.toString();
+    return result;
 }

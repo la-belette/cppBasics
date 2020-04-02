@@ -38,9 +38,10 @@ void StringBuilder::remove(unsigned int position, int length)
 std::string StringBuilder::toString() {
     char finalArray[charArray.size()];
     int i = 0;
-    for (auto charAtIndex = charArray.begin(); charAtIndex != charArray.end(); ++charAtIndex)
+    for (char c: charArray)
     {
-        finalArray[i] = *charAtIndex;
+        finalArray[i] = c;
+        i++;
     }
     return finalArray;
 }

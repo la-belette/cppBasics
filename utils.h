@@ -9,12 +9,8 @@
 
 using namespace std;
 
-class utils {
-
-public:
-    static bool isUnique(string stringUnderTest);
-    static bool isPermutation(string first, string second);
-};
-
+bool isUnique(string stringUnderTest);
+bool isPermutation(string first, string second);
+string toURL(string targetString);
 
 #endif //TRAINING_UTILS_H
