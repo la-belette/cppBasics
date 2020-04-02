@@ -137,7 +137,7 @@ int main() {
                     testToURL();
                     break;
                 default:
-                    cout << "Sorry I didn't understand, could you retype please?" << endl;
+                    cout << "Sorry I didn't understand :/" << endl;
             }
 
             cout << "Do you still want to play? y/n" << endl;
