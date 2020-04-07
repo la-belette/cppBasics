@@ -5,6 +5,7 @@
 #include "utils.h"
 #include "StringBuilder.h"
 #include "HashTable.h"
+#include <map>
 
 bool isUnique(std::string stringUnderTest)
 {
@@ -83,15 +84,21 @@ string toURL(string targetString)
 
 bool isPalindromePermutation(string targetString)
 {
-    HashTable<char> charactersOccurence;
+    std::map<char,int> charactersOccurence;
     size_t length = targetString.size();
     for (char c : targetString)
     {
-        if(charactersOccurence.getValue(c) == 0)
-            charactersOccurence.add(c, 1);
+        if(charactersOccurence.at(c) == 0)
+            charactersOccurence.emplace(c, 1);
         else
-            charactersOccurence.incrementValue(c);
+            charactersOccurence.at(c)++;
     }
-    //TODO check if all characters apart from maximum one appear an even amount of time
-    return false;
+
+    int oddOccurenceCharAmount = 0;
+    for(std::pair<const char, int> pair : charactersOccurence)
+    {
+        if(0 != (pair.second % 2))
+            oddOccurenceCharAmount++;
+    }
+    return oddOccurenceCharAmount <= 1;
 }

@@ -99,6 +99,17 @@ void testToURL()
     cout << "The URL form is:\n" << urlForm << endl;
 }
 
+void testIsPalindromePermutation()
+{
+    string targetString;
+    cout << "Type in the target string:\n";
+    getline(cin, targetString);
+    if(isPalindromePermutation(targetString))
+        cout << "This is a palindrome permutation.\n";
+    else
+        cout << "This isn't a palindrome permutation.\n";
+}
+
 int main() {
     string keyboardInput;
     int choice = 0;
@@ -111,6 +122,7 @@ int main() {
         << "\t 3 for string uniqueness\n"
         << "\t 4 for permutation check\n"
         << "\t 5 for transforming a string to a URL\n"
+        << "\t 6 for palindrome permutation check\n"
         << "\t 0 to exit\n";
         cin >> keyboardInput;
         cin.ignore();
@@ -135,6 +147,9 @@ int main() {
                     break;
                 case 5:
                     testToURL();
+                    break;
+                case 6:
+                    testIsPalindromePermutation();
                     break;
                 default:
                     cout << "Sorry I didn't understand :/" << endl;
