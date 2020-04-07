@@ -5,25 +5,39 @@
 #include <cstring>
 #include "HashTable.h"
 
-typedef std::pair<std::string, int> keyValue;
 
-int HashTable::hashCode(std::string str)
+template <>
+int HashTable<std::string>::str2IntHashCode(std::string str)
 {
     std::hash<std::string> hash_fn;
     return hash_fn(str);
 }
 
-void HashTable::add(std::string name, int age)
+template <typename K>
+void HashTable<K>::add(K key, int value)
 {
-    table[hashCode(name)].push_back(keyValue(name, age));
+    table[hashCode(key)].push_back(keyValue(key, value));
 }
 
-int HashTable::getValue(std::string name)
+template <typename K>
+int HashTable<K>::getValue(K key)
 {
-    std::list<keyValue> indexList = table[hashCode(name)];
-    for(keyValue pair: indexList)
+    std::list<std::pair<K, int>> indexList = table[hashCode(key)];
+    for(std::pair<K, int>  pair: indexList)
     {
-        if(0 == std::strcmp(pair.first.c_str(), name.c_str()))
+        if(0 == std::strcmp(pair.first.c_str(), key.c_str()))
             return pair.second;
+    }
+    return 0;
+}
+
+template<typename K>
+void HashTable<K>::incrementValue(K key)
+{
+    std::list<std::pair<K, int>> indexList = table[hashCode(key)];
+    for(std::pair<K, int>  pair: indexList)
+    {
+        if(0 == std::strcmp(pair.first.c_str(), key.c_str()))
+            pair.second++;
     }
 }

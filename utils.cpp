@@ -4,6 +4,7 @@
 
 #include "utils.h"
 #include "StringBuilder.h"
+#include "HashTable.h"
 
 bool isUnique(std::string stringUnderTest)
 {
@@ -78,4 +79,19 @@ string toURL(string targetString)
     }
     string result = url.toString();
     return result;
+}
+
+bool isPalindromePermutation(string targetString)
+{
+    HashTable<char> charactersOccurence;
+    size_t length = targetString.size();
+    for (char c : targetString)
+    {
+        if(charactersOccurence.getValue(c) == 0)
+            charactersOccurence.add(c, 1);
+        else
+            charactersOccurence.incrementValue(c);
+    }
+    //TODO check if all characters apart from maximum one appear an even amount of time
+    return false;
 }

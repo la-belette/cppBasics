@@ -20,7 +20,7 @@ void testStringBuilder()
 
 void testHashTable()
 {
-    HashTable family;
+    HashTable<string> family;
     string name;
     int age;
     char answer = ' ';

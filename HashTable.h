@@ -8,14 +8,15 @@
 #include <list>
 #include "include.h"
 
-class HashTable {
+template <class K> class HashTable {
 public:
-    void add(std::string name, int age);
-    int getValue(std::string name);
+    void add(K key, int value);
+    int getValue(K key);
+    int str2IntHashCode(std::string str);
+    void incrementValue(K key);
 
 private:
-    int hashCode(std::string str);
-    std::vector<std::list<std::pair<std::string, int>>> table;
+    std::vector<std::list<std::pair<K, int>>> table;
 };
 
 #endif //TRAINING_HASHTABLE_H
