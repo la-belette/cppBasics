@@ -88,10 +88,13 @@ bool isPalindromePermutation(string targetString)
     size_t length = targetString.size();
     for (char c : targetString)
     {
-        if(charactersOccurence.at(c) == 0)
-            charactersOccurence.emplace(c, 1);
-        else
-            charactersOccurence.at(c)++;
+        if(' ' != c)
+        {
+            if (charactersOccurence.find(c) == charactersOccurence.end())
+                charactersOccurence.emplace(c, 1);
+            else
+                charactersOccurence.at(c)++;
+        }
     }
 
     int oddOccurenceCharAmount = 0;
